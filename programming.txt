@@ -1,0 +1,269 @@
+17#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+#define STATES 2
+#define ALPHABET_SIZE 2
+
+int transitionTable[STATES][ALPHABET_SIZE] = {
+    {1, 0},
+    {1, 1} };
+bool isAccepted(char *input) {
+    int currentState = 0;
+    for (int i = 0; i < strlen(input); i++) {
+        int inputIndex = (input[i] == 'a') ? 0 : 1;
+        currentState = transitionTable[currentState][inputIndex];
+    }
+    return currentState == 1;
+}
+
+int main() {
+    char input[100];
+    
+    printf("Enter a string: ");
+    scanf("%s", input);
+    
+    if (isAccepted(input)) {
+        printf("Accepted\n");
+    } else {
+        printf("Not Accepted\n");
+    }
+    
+    return 0;
+}
+
+
+
+
+18.#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+#define STATES 2
+#define ALPHABET_SIZE 2
+
+int transitionTable[STATES][ALPHABET_SIZE] = {
+    {1, 0},    {1, 1} };
+
+bool isAccepted(char *input) {
+    int currentState = 0; // Start from the initial state
+    
+    for (int i = 0; i < strlen(input); i++) {
+               int inputIndex = (input[i] == '0') ? 0 : 1;
+        
+             currentState = transitionTable[currentState][inputIndex];
+    }
+    
+      return currentState == 1;
+}
+
+int main() {
+    char input[100];
+    
+    printf("Enter a string: ");
+    scanf("%s", input);
+    
+    if (isAccepted(input)) {
+        printf("Accepted\n");
+    } else {
+        printf("Not Accepted\n");
+    }
+    
+    return 0;
+}
+
+
+19.#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+bool S(char *input);
+bool match(char c, char expected);
+bool isTerminal(char c);
+
+
+bool S(char *input) {
+    if (*input == 'a') {
+        input++;
+        if (S(input)) {
+            if (*input == 'b') {
+                return true;
+            }
+        }
+    } else if (*input == 'b') {
+        input++;
+        if (*input == '\0') {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool match(char c, char expected) {
+    return c == expected;
+}
+
+bool isTerminal(char c) {
+    return c == 'a' || c == 'b';
+}
+
+int main() {
+    char input[100];
+
+    printf("Enter a string: ");
+    scanf("%s", input);
+
+    if (S(input) && *input == '\0') {
+        printf("Accepted\n");
+    } else {
+        printf("Not Accepted\n");
+    }
+
+    return 0;
+}
+20.#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+
+bool S(char *input);
+bool A(char *input);
+bool match(char c, char expected);
+
+bool S(char *input) {
+    if (*input == '0') {
+        input++;
+        if (A(input)) {
+            if (*input == '1') {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool A(char *input) {
+    if (*input == '0' || *input == '1') {
+        input++;
+        if (A(input)) {
+            return true;
+        }
+    } else {
+        return true;
+    }
+    return false;
+}
+
+
+bool match(char c, char expected) {
+    return c == expected;
+}
+
+int main() {
+    char input[100];
+
+    printf("Enter a string: ");
+    scanf("%s", input);
+
+    if (S(input) && *input == '\0') {
+        printf("Accepted\n");
+    } else {
+        printf("Not Accepted\n");
+    }
+
+    return 0;
+}
+
+21.#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+bool S(char *input);
+bool match(char c, char expected);
+
+bool S(char *input) {
+    if (*input == '0') {
+        input++;
+        if (S(input)) {
+            if (*input == '0') {
+                return true;
+            }
+        }
+    } else if (*input == '1') {
+        input++;
+        if (S(input)) {
+            if (*input == '1') {
+                return true;
+            }
+        }
+    } else if (*input == '\0') {
+                return true;
+    }
+    return false;
+}
+
+bool match(char c, char expected) {
+    return c == expected;
+}
+
+int main() {
+    char input[100];
+
+    printf("Enter a string: ");
+    scanf("%s", input);
+
+    if (S(input) && *input == '\0') {
+        printf("Accepted\n");
+    } else {
+        printf("Not Accepted\n");
+    }
+
+    return 0;
+}
+22.#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+bool S(char *input);
+bool A(char *input);
+
+bool S(char *input) {
+    if (*input == '0') {
+        input++;
+        if (S(input)) {
+            if (*input == '0') {
+                return true;
+            }
+        }
+    } else if (A(input)) {
+        return true;
+    }
+    return false;
+}
+
+bool A(char *input) {
+    if (*input == '1') {
+        input++;
+        if (A(input)) {
+            return true;
+        }
+    } else {
+              return true;
+    }
+    return false;
+}
+
+int main() {
+    char input[100];
+
+    printf("Enter a string: ");
+    scanf("%s", input);
+
+    if (S(input) && *input == '\0') {
+        printf("Accepted\n");
+    } else {
+        printf("Not Accepted\n");
+    }
+
+    return 0;
+}
